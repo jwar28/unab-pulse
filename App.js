@@ -1,14 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+//import Home from './screens/Home';
+import Login from './src/screens/Login';
+import { PaperProvider } from 'react-native-paper';
+
+const Stack = createStackNavigator();
+
+HomeStack = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name='Login'
+        component={Login}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+RootNavigator = () => {
+  return (
+    <NavigationContainer>
+      <HomeStack />
+    </NavigationContainer>
+  );
+};
 
 export default function App() {
   return (
-    <View className='flex-1 items-center justify-center bg-white'>
-      <Text className='font-bold text-3xl'>Hello world</Text>
-      <Text className='text-lg'>
-        Open up App.js to start working on your app!
-      </Text>
-      <StatusBar style='auto' />
-    </View>
+    <SafeAreaView style={style.AndroidSafeArea}>
+      <PaperProvider>
+        <RootNavigator />
+      </PaperProvider>
+    </SafeAreaView>
   );
 }
+
+const style = StyleSheet.create({
+  AndroidSafeArea: {
+    flex: 1,
+    backgroundColor: 'white',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+  },
+});
