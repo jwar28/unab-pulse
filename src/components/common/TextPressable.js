@@ -10,7 +10,7 @@ export default TextPressable = (props) => {
   return (
     <View>
       <Pressable onPress={props.onPress}>
-        <Text className={`text-sm font-medium mt-2 ${props.color}`}>
+        <Text className={`text-sm font-medium ${props.color}`}>
           {props.label}
         </Text>
       </Pressable>

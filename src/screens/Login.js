@@ -24,8 +24,8 @@ export default Login = ({ navigation }) => {
       <LoginForm
         email={email}
         password={password}
-        onChangeEmail={setEmail}
-        onChangePassword={setPassword}
+        setEmail={setEmail}
+        setPassword={setPassword}
         onSubmitFunction={() => onHandleLogin()}
         onForgotPassword={() => console.log('forgot password')}
         onRegister={() => navigation.navigate('Signup')}
