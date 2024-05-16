@@ -1,10 +1,19 @@
 import React from 'react';
 import Header from './Header';
 import FormInputField from '../common/FormInputField';
-import CustomPressable from '../common/CustomPressable';
+import TextPressable from '../common/TextPressable';
+import ButtonPressable from '../common/ButtonPressable';
+import { View, Text } from 'react-native';
 
-import { View, Text, Pressable } from 'react-native';
-
+/**
+ * @property {string} email - Email value.
+ * @property {string} password - Password value.
+ * @property {function} onChangeEmail - Function to execute when email changes.
+ * @property {function} onChangePassword - Function to execute when password changes.
+ * @property {function} onSubmitFunction - Function to execute when the form is submitted.
+ * @property {function} onForgotPassword - Function to execute when the forgot password link is pressed.
+ * @property {function} onRegister - Function to execute when the register link is pressed.
+ */
 export default LoginForm = (props) => {
   return (
     <View className='flex flex-col h-screen justify-center pb-20'>
@@ -32,21 +41,18 @@ export default LoginForm = (props) => {
             onChangeText={props.onChangePassword}
           />
 
-          <Pressable
+          <ButtonPressable
             onPress={props.onSubmitFunction}
-            className='bg-primary rounded-lg mt-1 block '>
-            <Text className='text-base text-white p-2.5 text-center'>
-              Entrar
-            </Text>
-          </Pressable>
+            buttonText='entrar'
+          />
 
           <View className='flex flex-row justify-between mt-2'>
-            <CustomPressable
+            <TextPressable
               label='¿Olvidaste tu contraseña?'
               color='text-gray-400'
               onPress={props.onForgotPassword}
             />
-            <CustomPressable
+            <TextPressable
               label='Regístrate'
               color='text-primary'
               onPress={props.onRegister}

@@ -1,6 +1,12 @@
 import React from 'react';
 import { View, Text, TextInput } from 'react-native';
 
+/**
+ * @property {string} placeholder - Placeholder text for the input field.
+ * @property {string} keyboardType - Type of keyboard to display.
+ * @property {string} value - Value of the input field.
+ * @property {function} onChangeText - Function to execute when the input field changes.
+ */
 export default FormInputField = (props) => {
   return (
     <View>
