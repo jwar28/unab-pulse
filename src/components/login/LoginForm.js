@@ -3,13 +3,9 @@ import Header from './Header';
 import FormInputField from '../common/FormInputField';
 import CustomPressable from '../common/CustomPressable';
 
-import { View, Text, SafeAreaView } from 'react-native';
-import { Button } from 'react-native-paper';
-import { styled } from 'nativewind';
+import { View, Text, Pressable } from 'react-native';
 
 export default LoginForm = (props) => {
-  const EnterButton = styled(Button);
-
   return (
     <View className='flex flex-col h-screen justify-center pb-20'>
       <Header />
@@ -36,12 +32,13 @@ export default LoginForm = (props) => {
             onChangeText={props.onChangePassword}
           />
 
-          <EnterButton
-            mode='contained'
-            className='bg-primary rounded mt-1'
-            onPress={props.onSubmitFunction}>
-            Entrar
-          </EnterButton>
+          <Pressable
+            onPress={props.onSubmitFunction}
+            className='bg-primary rounded-lg mt-1 block '>
+            <Text className='text-base text-white p-2.5 text-center'>
+              Entrar
+            </Text>
+          </Pressable>
 
           <View className='flex flex-row justify-between mt-2'>
             <CustomPressable
