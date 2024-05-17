@@ -1,20 +1,14 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import {
-  StyleSheet,
-  Platform,
-  StatusBar,
-  SafeAreaView,
-  View,
-} from 'react-native';
+import { StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { PaperProvider } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
 
-import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
+import BottomNavBar from './src/components/navigation/BottomNavBar';
 
 const Stack = createStackNavigator();
 const AuthenticatedUserContext = createContext({});
@@ -29,17 +23,7 @@ const AuthenticatedUserProvider = ({ children }) => {
 };
 
 HomeStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name='Home'
-        component={Home}
-        options={{
-          headerShown: false,
-        }}
-      />
-    </Stack.Navigator>
-  );
+  return <BottomNavBar />;
 };
 
 AuthStack = () => {
@@ -88,6 +72,8 @@ RootNavigator = () => {
 };
 
 export default function App() {
+  const { authenticatedUser } = useContext(AuthenticatedUserContext);
+
   return (
     <SafeAreaView style={style.AndroidSafeArea}>
       <AuthenticatedUserProvider>
