@@ -5,7 +5,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { PaperProvider } from 'react-native-paper';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './config/firebase';
-
 import Login from './src/screens/Login';
 import Signup from './src/screens/Signup';
 import BottomNavBar from './src/components/navigation/BottomNavBar';
@@ -22,7 +21,7 @@ const AuthenticatedUserProvider = ({ children }) => {
   );
 };
 
-HomeStack = () => {
+NavStack = () => {
   return <BottomNavBar />;
 };
 
@@ -52,7 +51,6 @@ RootNavigator = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // onAuthStateChanged returns an unsubscriber
     const unsubscribeAuth = onAuthStateChanged(
       auth,
       async (authenticatedUser) => {
@@ -60,20 +58,17 @@ RootNavigator = () => {
         setIsLoading(false);
       }
     );
-    // unsubscribe auth listener on unmount
     return unsubscribeAuth;
   }, [user]);
 
   return (
     <NavigationContainer>
-      {user ? <HomeStack /> : <AuthStack />}
+      {user ? <NavStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
 
 export default function App() {
-  const { authenticatedUser } = useContext(AuthenticatedUserContext);
-
   return (
     <SafeAreaView style={style.AndroidSafeArea}>
       <AuthenticatedUserProvider>
