@@ -2,13 +2,12 @@ import React from 'react';
 import ProfileInfo from '../components/profile/ProfileInfo';
 import useUserData from '../hooks/useUserData';
 import PCarga from './PCarga';
-import { View, Text, FlatList, Image, SafeAreaView } from 'react-native';
-import { styled } from 'nativewind';
+import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { Divider } from 'react-native-paper';
 import ButtonPressable from '../components/common/ButtonPressable';
+import ProfilePic from '../components/common/ProfilePic';
 
 export default Profile = () => {
-  const ProfilePic = styled(Image);
   const { user, loading, error } = useUserData();
   let data;
 
@@ -30,10 +29,7 @@ export default Profile = () => {
       <View className='bg-primary/90 h-52 w-screen absolute top-0 rounded-b-xl' />
       <View className='flex'>
         <View className='flex items-center'>
-          <ProfilePic
-            source={{ uri: user.image }}
-            className='w-full h-56 aspect-square rounded-full justify-center'
-          />
+          <ProfilePic image={user.image} />
         </View>
 
         <Text className='text-center text-4xl font-bold my-2 text-black/80'>
